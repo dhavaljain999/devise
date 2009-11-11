@@ -92,6 +92,13 @@ module Devise
 
       # Convert new keys to methods which overwrites Devise defaults
       options.each { |key, value| send(:"#{key}=", value) }
+
+      if Devise.orm == 'MongoMapper'
+        modules.each do |mod|
+          send(mod)
+        end
+      end
+
     end
 
     # Stores all modules included inside the model, so we are able to verify

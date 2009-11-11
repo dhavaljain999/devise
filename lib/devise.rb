@@ -30,15 +30,15 @@ module Devise
   # Used to encrypt password. Please generate one with rake secret
   mattr_accessor :pepper
   @@pepper = nil
-  
+
   # The number of times to encrypt password.
   mattr_accessor :stretches
   @@stretches = 10
-  
+
   # Time interval where the remember me token is valid.
   mattr_accessor :remember_for
   @@remember_for = 2.weeks
-  
+
   # Time interval you can access your account before confirming your account.
   mattr_accessor :confirm_within
   @@confirm_within = 0.days
@@ -57,6 +57,21 @@ module Devise
   # Store scopes mappings.
   mattr_accessor :mappings
   @@mappings = {}
+
+  # ORM choice
+  def self.orm()
+    @@orm || 'active_record'
+  end
+
+  def self.orm=(type_orm)
+    if type_orm == 'MongoMapper'
+      MongoMapper::Document::ClassMethods.send(:include, Devise::Models)
+      require 'devise/orm/mongo_mapper'
+      MongoMapper::Document::ClassMethods.send(:include, Devise::Orm::MongoMapper)
+    end
+    @@orm = type_orm
+  end
+
 
   class << self
     # Default way to setup Devise. Run script/generate devise_install to create
