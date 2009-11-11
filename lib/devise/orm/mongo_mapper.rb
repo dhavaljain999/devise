@@ -1,7 +1,7 @@
 module Devise
   module Orm
     module MongoMapper
-      def authenticable
+      def authenticatable
         key :email, String
         key :encrypted_password, String
         key :password_salt, String
