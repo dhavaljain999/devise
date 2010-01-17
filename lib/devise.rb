@@ -23,6 +23,7 @@ module Devise
     autoload :ActiveRecord, 'devise/orm/active_record'
     autoload :DataMapper, 'devise/orm/data_mapper'
     autoload :MongoMapper, 'devise/orm/mongo_mapper'
+    autoload :Mongoid, 'devise/orm/mongoid'
   end
 
   ALL = []
