@@ -3,6 +3,6 @@ class User
   field :created_at, :type => DateTime
   devise :authenticatable, :confirmable, :lockable, :recoverable,
          :registerable, :rememberable, :timeoutable, :token_authenticatable,
-         :trackable, :validatable
+         :trackable, :validatable, :http_authenticatable
   # attr_accessible :username, :email, :password, :password_confirmation
 end
