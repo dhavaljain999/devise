@@ -1,5 +1,8 @@
 module Validatable
   class ValidatesUniquenessOf < Validatable::ValidationBase
+    # with devise, we need scope.
+    # This little hack no usefull with activeModel and Rails 3.
+    # So delete it with devise 1.1
     def scope
       if @scope == []
         nil
@@ -10,20 +13,6 @@ module Validatable
 
     def message(instance)
       "has already been taken"
-    end
-  end
-
-  class ValidatesLengthOf < ValidationBase
-    def message(instance)
-
-      unless within.nil?
-        maximum = within.max
-      end
-      unless !maximum.nil? && instance.send(self.attribute).length <= maximum
-        "is too long (maximum is 20 characters)"
-      else
-        "is too short (minimum is 6 characters)"
-      end
     end
   end
 end
