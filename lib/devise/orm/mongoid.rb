@@ -33,6 +33,7 @@ module Devise
     module Mongoid
 
       module InstanceMethods
+
         def reload
           super
           self
@@ -44,6 +45,7 @@ module Devise
         # TODO: it's a little hack. Patch pull on master
         klass.send :include, InstanceMethods
         klass.send :include, ::Mongoid::Timestamps
+
         yield
 
         klass.devise_modules.each do |mod|
@@ -61,6 +63,7 @@ module Devise
         type = Time if type == DateTime
         field name, {:type => type}.merge(options)
       end
+
     end
   end
 end

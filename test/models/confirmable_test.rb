@@ -63,8 +63,8 @@ class ConfirmableTest < ActiveSupport::TestCase
   test 'should find and confirm an user automatically' do
     user = create_user
     confirmed_user = User.confirm!(:confirmation_token => user.confirmation_token)
-    assert_equal confirmed_user, user
-    assert user.reload.confirmed?
+    assert_equal confirmed_user, user.reload
+    assert user.confirmed?
   end
 
   test 'should return a new record with errors when a invalid token is given' do
@@ -123,7 +123,7 @@ class ConfirmableTest < ActiveSupport::TestCase
   test 'should find a user to send confirmation instructions' do
     user = create_user
     confirmation_user = User.send_confirmation_instructions(:email => user.email)
-    assert_equal confirmation_user, user
+    assert_equal confirmation_user, user.reload
   end
 
   test 'should return a new user if no email was found' do

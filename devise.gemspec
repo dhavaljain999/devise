@@ -85,6 +85,7 @@ Gem::Specification.new do |s|
      "lib/devise/orm/active_record.rb",
      "lib/devise/orm/data_mapper.rb",
      "lib/devise/orm/mongo_mapper.rb",
+     "lib/devise/orm/mongoid.rb",
      "lib/devise/rails.rb",
      "lib/devise/rails/routes.rb",
      "lib/devise/rails/warden_compat.rb",

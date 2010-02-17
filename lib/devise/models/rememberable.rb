@@ -44,6 +44,7 @@ module Devise
       def remember_me!
         self.remember_token = Devise.friendly_token
         self.remember_created_at = Time.now.utc
+
         save(false)
       end
 
@@ -69,6 +70,7 @@ module Devise
 
       # Remember token expires at created time + remember_for configuration
       def remember_expires_at
+        # TODO: with MongoId need transform by remember_created_at.utc
         remember_created_at + self.class.remember_for
       end
 

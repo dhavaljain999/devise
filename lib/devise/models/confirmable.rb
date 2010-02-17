@@ -160,7 +160,7 @@ module Devise
         # If the user is already confirmed, create an error for the user
         # Options must have the confirmation_token
         def confirm!(attributes={})
-          confirmable = find_or_initialize_with_error_by(:confirmation_token, attributes[:confirmation_token])        
+          confirmable = find_or_initialize_with_error_by(:confirmation_token, attributes[:confirmation_token])
           confirmable.confirm! unless confirmable.new_record?
           confirmable
         end

@@ -14,13 +14,14 @@ module Devise
       def self.included_modules_hook(klass)
         klass.send :extend,  self
         klass.send :include, InstanceMethods
+
         yield
 
         klass.devise_modules.each do |mod|
           klass.send(mod) if klass.respond_to?(mod)
         end
       end
-      
+
       def find(*args)
         options = args.extract_options!
         case args.first
@@ -32,7 +33,7 @@ module Devise
             super
         end
       end
-      
+
       include Devise::Schema
 
       # Tell how to apply schema methods. This automatically converts DateTime

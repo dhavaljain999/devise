@@ -96,7 +96,7 @@ module Devise
           self.failed_attempts += 1
           lock if failed_attempts > self.class.maximum_attempts
         end
-        save(false) if changed?
+        save(false)
         result
       end
 

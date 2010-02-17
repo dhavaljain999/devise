@@ -150,7 +150,7 @@ class LockableTest < ActiveSupport::TestCase
     user = create_user
     user.lock!
     locked_user = User.unlock!(:unlock_token => user.unlock_token)
-    assert_equal locked_user, user
+    assert_equal locked_user, user.reload
     assert_not user.reload.locked?
   end
 

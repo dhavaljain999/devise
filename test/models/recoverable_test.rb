@@ -77,7 +77,7 @@ class RecoverableTest < ActiveSupport::TestCase
   test 'should find a user to send instructions by email' do
     user = create_user
     reset_password_user = User.send_reset_password_instructions(:email => user.email)
-    assert_equal reset_password_user, user
+    assert_equal reset_password_user, user.reload
   end
 
   test 'should return a new record with errors if user was not found by e-mail' do
@@ -105,7 +105,7 @@ class RecoverableTest < ActiveSupport::TestCase
     user.send :generate_reset_password_token!
 
     reset_password_user = User.reset_password!(:reset_password_token => user.reset_password_token)
-    assert_equal reset_password_user, user
+    assert_equal reset_password_user, user.reload
   end
 
   test 'should a new record with errors if no reset_password_token is found' do

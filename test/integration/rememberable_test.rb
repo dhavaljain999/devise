@@ -25,7 +25,7 @@ class RememberMeTest < ActionController::IntegrationTest
     get users_path
     assert_response :success
     assert warden.authenticated?(:user)
-    assert warden.user(:user) == user
+    assert_equal user.reload, warden.user(:user)
   end
 
   test 'do not remember with invalid token' do
